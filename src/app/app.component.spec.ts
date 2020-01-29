@@ -3,6 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  const TITLE = 'StarWarz';
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -20,16 +22,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'app10'`, () => {
+  it(`should have as title 'StarWarz'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app10');
+    expect(app.title).toEqual(TITLE);
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('app10 app is running!');
+    expect(compiled.querySelector('.app-main__title').textContent).toContain(TITLE);
   });
 });
