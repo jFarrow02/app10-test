@@ -32,9 +32,6 @@ describe('FilmListComponent', () => {
 
     fixture = TestBed.createComponent(FilmListComponent);
     component = fixture.componentInstance;
-    //Setting up mock methods to return values must be done INSIDE beforeEach() 
-    //(fails if tried in assertion[?])
-    filmsHttpSrvc.getFilmsByUrl.and.returnValue(asyncData(MOCK_FILMS));
   }));
 
   it('should create', () => {
@@ -42,6 +39,7 @@ describe('FilmListComponent', () => {
   });
 
   it('should get a list of jedi onInit', () => {
+    filmsHttpSrvc.getFilmsByUrl.and.returnValue(asyncData(MOCK_FILMS));
     fixture.detectChanges();
     expect(component['filmsList']).toBeDefined();
     expect(component.filmsList[0]['title']).toEqual('The Force Woke Up')

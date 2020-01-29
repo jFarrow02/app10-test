@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StarshipsHttpService } from '../../../services/starships/starships-http.service';
 
 @Component({
   selector: 'app-starship-list',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StarshipListComponent implements OnInit {
 
-  constructor() { }
+  private static url = 'https://swapi.co/api/starships';
+  starshipsList: object[];
+  constructor(private starshipsHttpSrvc: StarshipsHttpService) { }
 
   ngOnInit() {
+    this.starshipsHttpSrvc.getStarshipsByUrl(StarshipListComponent.url)
+      .subscribe(
+        data => {
+          this.starshipsList = data['results'];
+        }
+      )
   }
 
 }
