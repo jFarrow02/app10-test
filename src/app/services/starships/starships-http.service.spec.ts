@@ -26,8 +26,6 @@ describe('StarshipsHttpService', () => {
     })
   };
 
-  
-
   beforeEach( async(
     () => {
       TestBed.configureTestingModule(
@@ -88,7 +86,7 @@ describe('StarshipsHttpService', () => {
       .subscribe(
         done => fail('This request should fail'),
         error => {
-          console.warn( error );
+          //console.warn( error );
           expect(error).toEqual('This is a client error');
         }
       )
