@@ -11,12 +11,12 @@ export class FilmsHttpService {
   handleError( err: HttpErrorResponse ){
     let clientErrOutput;
     //client-side err
-    if( err.error instanceof ErrorEvent ){
-      clientErrOutput = err.error.message;
+    console.log( 'impl: ', err );
+    if( err instanceof ErrorEvent ){
+      clientErrOutput = err.message;
     } 
     //server-side err
     else {
-      console.error(`ERROR: ${err.message} -- ${err.status}`);
       clientErrOutput = 'Error processing this request. Please try again later.'
     }
     

@@ -1,18 +1,23 @@
 import { TestBed, async } from '@angular/core/testing';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FilmsHttpService } from './films-http.service';
-import { of, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { defer } from 'rxjs';
+
+// The RxJS defer() operator returns an observable. It takes a factory function
+//that returns either a promise or an observable. When something subscribes to defer's 
+//observable, it adds the subscriber to a new observable created with that factory.
+//The defer() operator transforms the Promise.resolve() into a new observable that, 
+//like HttpClient, emits once and completes. Subscribers are unsubscribed after they receive the data value.
+//There's a similar helper for producing an async error.
+
 export function asyncData<T>(data: T) {
    return defer(() => new Observable( subscriber => {
      subscriber.next( data );
      subscriber.complete();
    }));
 }
-// export function asyncError(error: any) {
-//    return defer(() => Promise.reject(error));
-// }
 export function asyncError(error: any) {
   return defer(() => new Observable(subscriber =>{
     subscriber.error( error );
@@ -68,4 +73,21 @@ describe('FilmsHttpService', () => {
         }
       )
   });
+
+  it('should GET via http client (ERROR CLIENT SIDE)', () => {
+    const errResponse = new ErrorEvent('Test Error', {message: 'This is an error event'});
+
+    httpClientSpy.get.and.returnValue( defer(()=>{
+      throw errResponse;
+    }));
+    
+    filmsHttpSrvc.getFilmsByUrl( MOCK_URL )
+      .subscribe(
+        done => fail('Throwing an error on client side' ),
+        ( err ) => {
+          console.log( 'CLIENT SIDE ERR: ', err );
+          expect(err).toEqual('This is an error event');
+        }
+      )
+  })
 });
