@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JediListComponent implements OnInit {
 
+  title = 'Jedi';
   constructor() { }
 
   ngOnInit() {

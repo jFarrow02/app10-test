@@ -1,6 +1,15 @@
+import { Component } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+//Stub child components for cleaner unit test
+@Component({selector: 'app-main-nav', template: ''})
+class AppMainNavStub{}
+
+@Component({selector: 'router-outlet', template: ''})
+class RouterOutletStub{}
 
 describe('AppComponent', () => {
   const TITLE = 'StarWarz';
@@ -8,11 +17,14 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        AppMainNavStub, //declare stubbed child components
+        RouterOutletStub,
       ],
+      schemas: [ NO_ERRORS_SCHEMA ],  //ignore unknown child components
     }).compileComponents();
   }));
 
@@ -32,6 +44,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.app-main__title').textContent).toContain(TITLE);
+    expect(compiled.querySelector('.title').textContent).toContain(TITLE);
   });
 });
