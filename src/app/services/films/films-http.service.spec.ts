@@ -75,7 +75,13 @@ describe('FilmsHttpService', () => {
   });
 
   it('should GET via http client (ERROR CLIENT SIDE)', () => {
-    const errResponse = new ErrorEvent('Test Error', {message: 'This is an error event'});
+    const errResponse: HttpErrorResponse = new HttpErrorResponse(
+      {
+        error: new ErrorEvent('ClientSideError',
+          {message: 'There was an error on the client side.'}
+        )
+      }
+    )
 
     httpClientSpy.get.and.returnValue( defer(()=>{
       throw errResponse;
@@ -85,8 +91,8 @@ describe('FilmsHttpService', () => {
       .subscribe(
         done => fail('Throwing an error on client side' ),
         ( err ) => {
-          console.log( 'CLIENT SIDE ERR: ', err );
-          expect(err).toEqual('This is an error event');
+          //console.log( 'CLIENT SIDE ERR: ', err );
+          expect(err).toEqual(errResponse.error.message);
         }
       )
   })

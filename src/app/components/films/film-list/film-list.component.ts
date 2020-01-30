@@ -13,6 +13,7 @@ export class FilmListComponent implements OnInit {
   httpFetchFailed: boolean = false;
   private static url = 'https://swapi.co/api/films/';
 
+  title = 'Films';
   constructor(private filmsHttpSrvc: FilmsHttpService) { }
 
   ngOnInit() {

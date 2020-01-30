@@ -1,4 +1,6 @@
 <section id="app-main">
   <h1 class="app-main__title">{{title}}</h1>
+  <p>The light is: {{status}}</p>
+  <button class="on-off-toggle" (click)="setStatus()">{{switchText}}</button>
   <router-outlet></router-outlet>
 </section>

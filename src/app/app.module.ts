@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FilmsModule } from './components/films/films.module';
+import { FilmsRoutingModule } from './components/films/films-routing.module';
 
 @NgModule({
   declarations: [
@@ -11,6 +13,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
+    FilmsModule,
+    FilmsRoutingModule,
     AppRoutingModule,
     HttpClientModule,
   ],

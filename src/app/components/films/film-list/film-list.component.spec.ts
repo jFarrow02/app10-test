@@ -43,5 +43,10 @@ describe('FilmListComponent', () => {
     fixture.detectChanges();
     expect(component['filmsList']).toBeDefined();
     expect(component.filmsList[0]['title']).toEqual('The Force Woke Up')
+  });
+
+  it('should set a title', () => {
+    fixture.detectChanges();
+    expect(component.title).toEqual('Films');
   })
 });

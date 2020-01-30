@@ -11,9 +11,8 @@ export class FilmsHttpService {
   handleError( err: HttpErrorResponse ){
     let clientErrOutput;
     //client-side err
-    //console.log( 'impl: ', err );
-    if( err instanceof ErrorEvent ){
-      clientErrOutput = err.message;
+    if( err.error instanceof ErrorEvent ){
+      clientErrOutput = err.error.message;
     } 
     //server-side err
     else {

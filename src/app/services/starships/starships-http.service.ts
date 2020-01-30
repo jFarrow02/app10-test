@@ -11,8 +11,8 @@ export class StarshipsHttpService {
   handleError( err: HttpErrorResponse ){
     let clientErrMsg: string;
     //client-side
-    if( err instanceof ErrorEvent ){
-      clientErrMsg = err.message;
+    if( err.error instanceof ErrorEvent ){
+      clientErrMsg = err.error.message;
     }
     //server-side
     else {

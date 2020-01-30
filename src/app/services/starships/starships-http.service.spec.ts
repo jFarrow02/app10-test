@@ -80,7 +80,13 @@ describe('StarshipsHttpService', () => {
     //successfully or an exception thrown in an RxJS operator.
     //These errors produce JavaScript ErrorEvent objects.
     
-    const err: ErrorEvent = new ErrorEvent('Client Error', {message: 'This is a client error'});
+    const err: HttpErrorResponse = new HttpErrorResponse(
+      {
+        error: new ErrorEvent('ClientSideError',
+          { message: 'This is a client error'}
+        )
+      }
+    );
     httpClientMock.get.and.returnValue(asyncError(err));
     starshipHttpSrvc.getStarshipsByUrl(MOCK_URL)
       .subscribe(
