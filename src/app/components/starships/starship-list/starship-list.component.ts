@@ -8,6 +8,7 @@ import { StarshipsHttpService } from '../../../services/starships/starships-http
 })
 export class StarshipListComponent implements OnInit {
 
+  title = 'Starships';
   private static url = 'https://swapi.co/api/starships';
   starshipsList: object[];
   constructor(private starshipsHttpSrvc: StarshipsHttpService) { }
