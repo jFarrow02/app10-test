@@ -7,11 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'StarWarz';
-  status = 'off';
-  switchText = 'ON';
 
-  setStatus(){
-    this.status = this.status === 'off' ? 'on' : 'off';
-    this.switchText = this.status === 'off' ? 'ON' : 'OFF';
-  }
 }

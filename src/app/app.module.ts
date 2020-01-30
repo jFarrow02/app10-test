@@ -9,13 +9,15 @@ import { FilmsModule } from './components/films/films.module';
 import { FilmsRoutingModule } from './components/films/films-routing.module';
 import { HomeModule } from './components/home/home.module';
 import { HomeRoutingModule } from './components/home/home-routing.module';
+import { MainNavComponent } from './components/main-nav/main-nav/main-nav.component';
+import { NotFoundComponent } from './components/not-found/not-found/not-found.component';
 import { StarshipsModule } from './components/starships/starships.module';
 import { StarshipsRoutingModule } from './components/starships/starships-routing.module';
-import { NotFoundComponent } from './components/not-found/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MainNavComponent,
     NotFoundComponent,
   ],
   imports: [

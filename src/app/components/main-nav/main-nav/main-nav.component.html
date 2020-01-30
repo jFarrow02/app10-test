@@ -1,0 +1,6 @@
+<p>main-nav works!</p>
+<nav class="main-nav">
+    <a class="main-nav__navlink" *ngFor="let route of routesList" [routerLink]="route.path" routerLinkActive="active">
+    {{route.text}}
+</a>
+</nav>
