@@ -1,3 +1,9 @@
 <article class='films'>
     <h2 class="title">{{title}}</h2>
+    <section class="loading" *ngIf="loading">Loading...</section>
+    <section class="films__main-content" *ngIf="!loading">
+        <div class="films__film-list-item" *ngFor="let film of filmsList">
+            <a (click)="getFilmByUrl(film.id)">{{film.url}}</a>
+        </div>
+    </section>
 </article>

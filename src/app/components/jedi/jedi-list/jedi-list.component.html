@@ -1,3 +1,11 @@
 <article class="jedi">
     <h2 class="title">{{title}}</h2>
+    <section class="jedi-content">
+        <div id="jedi-content__loading" *ngIf="loading">Loading...</div>
+        <div id="jedi-content__loaded" *ngIf="!loading">
+            <div class="page-numbers" *ngFor="let page of pageList">
+                {{page.pageNumber}}
+            </div>
+        </div>
+    </section>
 </article>
