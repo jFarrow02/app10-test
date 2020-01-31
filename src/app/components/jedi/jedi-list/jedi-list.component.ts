@@ -30,6 +30,7 @@ export class JediListComponent implements OnInit {
     this.loading = true;
     if(this.cache.getJediCache().has(url)){
       this.jediList = this.cache.jediCache.get(url);
+      this.loading = false;
     }
     else{
       this.http.get(url)
@@ -37,10 +38,10 @@ export class JediListComponent implements OnInit {
         data => {
           this.jediList = this.jedify(data['results']);
           this.cache.addToJediCache(url, this.jediList);
+          this.loading = false;
         }
       );
     }
-    this.loading = false;
   }
 
   setCurrentJedi(id: number){

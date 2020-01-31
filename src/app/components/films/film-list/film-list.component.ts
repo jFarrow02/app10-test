@@ -11,17 +11,19 @@ import { PaginationService } from 'src/app/services/pagination/pagination.servic
 export class FilmListComponent implements OnInit {
 
   fetchErrorMsg: string;
-  filmsList: Film[];
+  filmsList: Film[] = [];
   httpFetchFailed: boolean = false;
   private static url = 'https://swapi.co/api/films/';
 
   loading = true;
   title = 'Films';
-
   getFilmByUrl(id: number){
     console.log(id);
   }
-  constructor(private http: HttpReqService, pagination: PaginationService) { }
+  constructor(
+    private http: HttpReqService, 
+    //pagination: PaginationService
+    ) { }
 
   ngOnInit() {
     this.http.get(FilmListComponent.url)

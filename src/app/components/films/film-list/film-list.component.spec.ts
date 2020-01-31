@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FilmListComponent } from './film-list.component';
-import { FilmsHttpService } from '../../../services/films/films-http.service';
+import { HttpReqService } from '../../../services/http/http-req.service';
 import { defer, Observable, of } from 'rxjs';
 
 function asyncData<Data>(data: Data){
@@ -16,8 +16,9 @@ describe('FilmListComponent', () => {
   let component: FilmListComponent;
   let fixture: ComponentFixture<FilmListComponent>;
   //Initialize the service IMMEDIATELY
-  let filmsHttpSrvc = jasmine.createSpyObj('FilmsHttpService', ['getFilmsByUrl']);
-  const MOCK_FILMS = {results: [{title: 'The Force Woke Up'}]};
+  let httpReqSrvc = jasmine.createSpyObj('HttpReqService', ['get']);
+  const MOCK_FILMS = {results: [{title: 'The Force Woke Up', url: 'https://film/99'}]};
+  const getSpy = httpReqSrvc.get.and.returnValue(asyncData(MOCK_FILMS));
 
   beforeEach(async(() => {
    
@@ -25,7 +26,7 @@ describe('FilmListComponent', () => {
       {
         declarations: [ FilmListComponent ],
         providers: [
-          {provide: FilmsHttpService, useValue: filmsHttpSrvc},
+          {provide: HttpReqService, useValue: httpReqSrvc},
         ],
       }
     );
@@ -39,10 +40,10 @@ describe('FilmListComponent', () => {
   });
 
   it('should get a list of jedi onInit', () => {
-    filmsHttpSrvc.getFilmsByUrl.and.returnValue(asyncData(MOCK_FILMS));
     fixture.detectChanges();
-    expect(component['filmsList']).toBeDefined();
-    expect(component.filmsList[0]['title']).toEqual('The Force Woke Up')
+    let a = fixture.nativeElement.querySelector('.films__film-list-item>a:first-of-type');
+    expect(a.textContent).toBe('https://film/99');
+    expect(getSpy.calls.any()).toBe(true);
   });
 
   it('should set a title', () => {

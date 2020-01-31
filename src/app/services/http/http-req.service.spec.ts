@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClient } from '@angular/common/http';
-import { defer, Observable } from 'rxjs';
+import { defer, Observable, of } from 'rxjs';
 import { HttpReqService } from './http-req.service';
 import { Data } from '@angular/router';
 
 function asyncData<Data>(data: Data){
   return defer( ()=>{
     return new Observable( subscriber => {
-      subscriber.next();
+      subscriber.next(data);
       subscriber.complete();
     })
   })
@@ -23,7 +23,7 @@ describe('HttpReqService', () => {
     TestBed.configureTestingModule(
       {
         declarations: [
-          HttpReqService
+          //HttpReqService
         ],
         providers: [
           HttpReqService,
@@ -41,10 +41,10 @@ describe('HttpReqService', () => {
   
   it('should GET via httpClient', () => {
     httpClientMock.get.and.returnValue(asyncData(MOCK_DATA));
-
     httpReqSrvc.get(MOCK_URL)
       .subscribe(
         data => {
+          //console.warn(data);
           expect(data).toEqual(MOCK_DATA);
         }
       )

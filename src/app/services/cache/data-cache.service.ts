@@ -6,7 +6,7 @@ import { Jedi } from '../../models/Jedi';
 })
 export class DataCacheService {
 
-  private jediCache: Map<string, any> = new Map();
+  jediCache: Map<string, any> = new Map();
 
   addToJediCache( key: string, value: Jedi[]){
     this.jediCache.set(key, value);
