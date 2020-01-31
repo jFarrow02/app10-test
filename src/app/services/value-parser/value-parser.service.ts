@@ -6,10 +6,10 @@ import { Injectable } from '@angular/core';
 export class ValueParserService {
 
   static parseIdFromUrl(url: string): number {
-    let id = url.match(/\/[0-9]\//)[0];
-        id = id.substring(1, id.length -1);
-        //return Number.isNaN(Number.parseInt(id)) ? id : Number.parseInt(id);
-        return Number.parseInt(id);
+    let array = url.split('/');
+    let id = array.find( element => !Number.isNaN(Number.parseInt(element)));
+    return Number.parseInt(id);
   }
+  
   constructor() { }
 }

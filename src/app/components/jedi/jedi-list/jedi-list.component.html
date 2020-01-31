@@ -4,13 +4,14 @@
         <div id="jedi-content__loading" *ngIf="loading">Loading...</div>
         <div id="jedi-content__loaded" *ngIf="!loading">
             <div class="jedi-content__jedilist" *ngIf="jediList">
-                <section *ngFor="let jedi of jediList">
+                <section *ngFor="let jedi of jediList" (click)="setCurrentJedi(jedi.id)">
                     {{jedi.name}}
                 </section>
             </div>
             <div class="page-numbers" *ngFor="let page of pageList" (click)="getJediByPage(page.url)">
                 {{page.pageNumber}}
             </div>
+            <app-jedi-details [jedi]="currentJedi"></app-jedi-details>
         </div>
     </section>
 </article>

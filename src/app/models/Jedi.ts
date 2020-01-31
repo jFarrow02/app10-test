@@ -31,11 +31,11 @@ export class Jedi {
     species: [];
     vehicles: string[];
     starships: string[];
-    url: string[];
-    id: number;
+    url: string;
+    id: any;
 
     constructor(jedi: JediInterface){
         Object.assign(this, jedi);
-        //this.id = ValueParserService.parseIdFromUrl(jedi['url']);
+        this.id = ValueParserService.parseIdFromUrl(jedi.url);
     }
 }

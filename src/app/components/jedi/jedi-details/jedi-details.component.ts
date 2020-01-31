@@ -7,8 +7,7 @@ import { Jedi } from '../../../models/Jedi';
 })
 export class JediDetailsComponent implements OnInit {
 
-  @Input()
-  jedi: Jedi
+  @Input() jedi: Jedi
   constructor() { }
 
   ngOnInit() {
