@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpReqService } from '../../../services/http/http-req.service';
 import { Film } from '../../../models/Film';
+import { PaginationService } from 'src/app/services/pagination/pagination.service';
 
 @Component({
   selector: 'app-film-list',
@@ -20,7 +21,7 @@ export class FilmListComponent implements OnInit {
   getFilmByUrl(id: number){
     console.log(id);
   }
-  constructor(private http: HttpReqService) { }
+  constructor(private http: HttpReqService, pagination: PaginationService) { }
 
   ngOnInit() {
     this.http.get(FilmListComponent.url)
@@ -28,7 +29,6 @@ export class FilmListComponent implements OnInit {
         data => {
           this.filmsList = data['results'].map( film => new Film(film));
           this.loading = false;
-          console.log(data);
           //console.log(this.filmsList);  //OK
         },
         error => {

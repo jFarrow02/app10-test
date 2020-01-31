@@ -3,7 +3,12 @@
     <section class="jedi-content">
         <div id="jedi-content__loading" *ngIf="loading">Loading...</div>
         <div id="jedi-content__loaded" *ngIf="!loading">
-            <div class="page-numbers" *ngFor="let page of pageList">
+            <div class="jedi-content__jedilist" *ngIf="jediList">
+                <section *ngFor="let jedi of jediList">
+                    {{jedi.name}}
+                </section>
+            </div>
+            <div class="page-numbers" *ngFor="let page of pageList" (click)="getJediByPage(page.url)">
                 {{page.pageNumber}}
             </div>
         </div>

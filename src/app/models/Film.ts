@@ -1,3 +1,5 @@
+import { ValueParserService } from '../services/value-parser/value-parser.service';
+
 export interface FilmInterface {
     id: number;
     title: string;
@@ -15,7 +17,7 @@ export interface FilmInterface {
 }
 
 export class Film {
-    id: number;
+    id: number | string;
     title: string;
     episode_id: number;
     opening_crawl: string;
@@ -31,8 +33,6 @@ export class Film {
 
     constructor (film: FilmInterface){
         Object.assign(this, film);
-        let id = film.url.match(/\/[0-9]\//)[0];
-        id = id.substring(1, id.length -1);
-        this.id = Number.parseInt(id);
+        this.id = ValueParserService.parseIdFromUrl(film.url);
     }
 }
