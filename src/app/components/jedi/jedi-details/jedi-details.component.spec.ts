@@ -19,12 +19,6 @@ describe('JediDetailsComponent', () => {
     jediEl = debugEl.nativeElement;
   }));
 
-  // beforeEach(() => {
-  //   fixture = TestBed.createComponent(JediDetailsComponent);
-  //   component = fixture.componentInstance;
-  //   fixture.detectChanges();
-  // });
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });

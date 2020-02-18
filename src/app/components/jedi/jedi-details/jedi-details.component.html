@@ -1,4 +1,28 @@
 <section class="jedi-details">
     <h3>Jedi Details</h3>
     <h4>{{jedi.name}}</h4>
+    <section class="jedi-details__bio">
+        <ul>
+            <li>Species:
+                <ul>
+                    <li *ngFor="let s of speciesList">
+                        <a href="#">{{s.name}}</a>
+                    </li>
+                </ul>
+            </li>
+            <li>Height: {{jedi.height}}cm</li>
+            <li>Mass: {{jedi.mass}}kg</li>
+            <li>Gender: {{jedi.gender}}</li>
+            <li>Hair Color: {{jedi.hair_color}}</li>
+            <li>Eye Color: {{jedi.eye_color}}</li>
+            <li>Skin Color: {{jedi.skin_color}}</li>
+            <li>Born: {{jedi.birth_year}}</li>
+        </ul>
+    </section>
+    <section class="jedi-details__films">
+
+    </section>
+    <section class="jedi-details__starships">
+
+    </section>
 </section>
