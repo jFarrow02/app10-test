@@ -9,7 +9,7 @@ import { HttpReqService } from '../../../services/http/http-req.service';
 export class HomeComponent implements OnInit {
 
   title = 'Home';
-  readonly URL = 'http://apiservertest-env.yxevkjc8ci.us-east-1.elasticbeanstalk.com/'
+  readonly URL = 'https://apiservertest-env.yxevkjc8ci.us-east-1.elasticbeanstalk.com/'
   constructor(private httpSrvc: HttpReqService) { }
 
   ngOnInit() {
